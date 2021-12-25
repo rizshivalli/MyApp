@@ -18,6 +18,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { Provider as PaperProvider,DefaultTheme } from 'react-native-paper';
+
 
 import {
   Colors,
@@ -27,11 +29,26 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'tomato',
+    accent: 'yellow',
+  },
+};
+
+
+
 const Section: React.FC<{
   title: string;
 }> = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
+    <PaperProvider theme={theme}>
+
+
     <View style={styles.sectionContainer}>
       <Text
         style={[
@@ -52,6 +69,7 @@ const Section: React.FC<{
         {children}
       </Text>
     </View>
+    </PaperProvider>
   );
 };
 
